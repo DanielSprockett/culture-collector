@@ -16,6 +16,9 @@ outdir: outdir
 # path to checkm data directory (must be writeable)
 checkm_data: checkm_data
 
+# path to gtdb data directory (must be writeable)
+gtdb_data: gtdb_data
+
 params:
   spades: " "
   checkm: " "
