@@ -16,8 +16,8 @@ outdir: outdir
 # path to checkm data directory (must be writeable)
 checkm_data: checkm_data
 
-# path to gtdb data directory (must be writeable)
-gtdb_data: gtdb_data
+# path to gtdb data directory
+gtdb_data: "/local/workdir/jgs/data/isolate_genomes/culture-collector/gtdb_data"
 
 params:
   spades: " "
