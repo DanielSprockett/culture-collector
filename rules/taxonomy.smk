@@ -20,7 +20,7 @@ rule taxonomy_gtdb:
     input:
         fasta=rules.assemble_spades.output
     output:
-        join(outdir, "taxonomy/gtdb/{sample}/{sample}.bac120.summary.tsv")
+        touch(join(outdir, "taxonomy/gtdb/{sample}/gtdbtk.done"))
     log:
         join(outdir, "logs/gtdb/{sample}.log")
     conda:

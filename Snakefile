@@ -42,7 +42,7 @@ rule all:
         expand(join(outdir, "assembled/checkm/{sample}/output/plots/{sample}.ref_dist_plots.png"), sample=samples.index),
         # expand(join(outdir, "assembled/checkm/{sample}/output/plots/{sample}.paralel_coord_plot.png"), sample=samples.index),
         # expand(join(outdir, "assembled/checkm/{sample}/output/plots/bin_qa_plot.png"), sample=samples.index),
-        expand(join(outdir, "taxonomy/gtdb/{sample}/{sample}.bac120.summary.tsv"), sample=samples.index)
+        expand(join(outdir, "taxonomy/gtdb/{sample}/gtdbtk.done"), sample=samples.index)
 
         # The first rule should define the default target files
         # Subsequent target rules can be specified below. They should start with all_*.
