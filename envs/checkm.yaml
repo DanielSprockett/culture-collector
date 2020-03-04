@@ -1,0 +1,7 @@
+channels:
+  - bioconda
+dependencies:
+  - checkm-genome=1.1.2
+  - hmmer=3.1b2
+  - pplacer=1.1.alpha19
+  - prodigal=2.6.3

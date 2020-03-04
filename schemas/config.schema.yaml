@@ -1,0 +1,52 @@
+$schema: "http://json-schema.org/draft-06/schema#"
+
+description: snakemake configuration file
+
+type: object
+
+properties:
+  temp_dir:
+    type: string
+
+  samples:
+    type: string
+
+  units:
+    type: string
+
+  outdir:
+    type: string
+
+  checkm_data:
+    type: string
+
+  params:
+    type: object
+    properties:
+      spades: 
+        type: string
+      metaquast:
+        type: string
+      checkm:
+        type: string
+      multiqc:
+        type: string
+      fastqc:
+        type: string
+      cutadapt-pe:
+        adapters:
+          type: string
+        others:
+          type: string
+    required:
+      - spades
+      - checkm
+      - cutadapt-pe
+
+required:
+  - samples
+  - units
+  - params
+  - outdir
+  - temp_dir
+  - checkm_data

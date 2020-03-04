@@ -1,3 +1,26 @@
 # This file should contain everything to configure the workflow on a global scale.
 # In case of sample based data, it should be complemented by a samples.tsv file that contains
 # one row per sample. It can be parsed easily via pandas.
+
+temp_dir: ./
+
+# path or URL to sample sheet (TSV format)
+samples: samples.tsv
+
+# path or URL to sequencing unit sehet
+units: units.tsv
+
+# path to output directory
+outdir: outdir
+
+# path to checkm data directory (must be writeable)
+checkm_data: checkm_data
+
+params:
+  spades: " "
+  checkm: " "
+  multiqc: " "
+  fastqc: " "
+  cutadapt-pe: 
+    adapters: "-a CTGTCTCTTATACACATCT -A CTGTCTCTTATACACATCT "
+    others: "--minimum-length 1 -q 20 "
