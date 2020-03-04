@@ -51,3 +51,4 @@ rule all:
 include: "rules/qc.smk"
 include: "rules/assemble.smk"
 include: "rules/checkm.smk"
+include: "rules/taxonomy.smk"
