@@ -53,6 +53,6 @@ rule taxonomy_gtdb:
 
         outdir=$(dirname "{output[0]}")
 
-        gtdbtk classify_wf --cpus {threads} {params} --batchfile $outdir/file.txt --out_dir $outdir 2> {log} 1>&2
+        gtdbtk classify_wf --cpus {threads} {params} --batchfile {input[0]} --out_dir $outdir 2> {log} 1>&2
         """
 
