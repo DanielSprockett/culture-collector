@@ -16,13 +16,29 @@ rule gtdb_setup:
         rm xvzf gtdbtk_r89_data.tar.gz
         """
 
+rule gtdb_prep:
+    input:
+        fastas=expand(rules.assemble_quast.output, sample=samples.index, unit=units.index)
+    output:
+        join(outdir, "taxonomy", "gtdb", "batchfile.txt")
+    log:
+        join(outdir, "logs", "gtdb", "prep.log")
+    run:
+        with open(output[0], 'w') as f:
+            for s in samples.index:
+                fasta = join(outdir, "assembled/spades/%s/contigs.fasta" % s)
+                if fasta not in fastas:
+                    raise ValueError("Can't find input file %s" % fasta)
+                f.write("{0}\t{1}".format(fasta, s))
+
+
 rule taxonomy_gtdb:
     input:
-        fasta=rules.assemble_spades.output
+        rules.gtdb_prep.output
     output:
-        touch(join(outdir, "taxonomy/gtdb/{sample}/gtdbtk.done"))
+        touch(join(outdir, "taxonomy/gtdb/gtdbtk.done"))
     log:
-        join(outdir, "logs/gtdb/{sample}.log")
+        join(outdir, "logs/gtdb/batch.log")
     conda:
         "../envs/gtdb.yaml"
     params:
@@ -32,8 +48,6 @@ rule taxonomy_gtdb:
         export GTDBTK_DATA_PATH={gtdb_data}
 
         outdir=$(dirname "{output[0]}")
-
-        echo -e "{input[0]}\t{wildcards.sample}" > $outdir/file.txt
 
         gtdbtk classify_wf --batchfile $outdir/file.txt --out_dir $outdir 2> {log} 1>&2
         """
