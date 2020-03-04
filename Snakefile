@@ -5,7 +5,7 @@ from snakemake.utils import validate, min_version
 from os.path import join
 
 #### set minimum Snakemake version
-min_version("5.10.0")
+min_version("5.9.1")
 
 #### load config and sample sheets
 
