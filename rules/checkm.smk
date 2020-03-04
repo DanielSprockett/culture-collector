@@ -114,24 +114,6 @@ rule checkm_cov:
         """
 
 
-rule checkm_cov_pca:
-    input:
-        binf=rules.checkm_lineage_wf.output.cin,
-        cov=rules.checkm_cov.output
-    output:
-        touch(join(outdir, "assembled/checkm/{sample}/output/plots/cov_pca.done"))
-    conda:
-        "../envs/checkm.yaml"
-    log:
-        join(outdir, "logs/checkm/{sample}.cov_pca.log")
-    shell:
-        """
-        bindir=$(dirname "{input.binf}")
-        plotdir=$(dirname "{output}")
-        checkm cov_pca $bindir $plotdir {input.cov}
-        """
-
-
 rule checkm_tetra:
     input:
         rules.checkm_lineage_wf.output.cin
@@ -144,25 +126,6 @@ rule checkm_tetra:
     shell:
         """
         checkm tetra {input} {output}
-        """
-
-
-rule checkm_tetra_pca:
-    input:
-        binf=rules.checkm_lineage_wf.output.cin,
-        tetra=rules.checkm_tetra.output
-    output:
-        touch(join(outdir, "assembled/checkm/{sample}/output/plots/tetra_pca.done"))
-    conda:
-        "../envs/checkm.yaml"
-    log:
-        join(outdir, "logs/checkm/{sample}.tetra_pca.log")
-    shell:
-        """
-        bindir=$(dirname "{input.binf}")
-        plotdir=$(dirname "{output}")
-
-        checkm tetra_pca $bindir $plotdir {input.tetra}
         """
 
 
@@ -187,48 +150,6 @@ rule checkm_dist_plot:
         """
 
 
-rule checkm_par_coor_plot:
-    input:
-        binf=rules.checkm_lineage_wf.output.cin,
-        outf=rules.checkm_lineage_wf.output.lineage,
-        cov=rules.checkm_cov.output
-    output:
-        touch(join(outdir, "assembled/checkm/{sample}/output/plots/{sample}.paralel_coord_plot.png"))
-    conda:
-        "../envs/checkm.yaml"
-    log:
-        join(outdir, "logs/checkm/{sample}.par_coord_plot.log")
-    shell:
-        """
-        bindir=$(dirname "{input.binf}")
-        plotdir=$(dirname "{output}")
-        outdir=$(dirname "{input.outf}")
-
-        checkm par_plot $outdir $bindir $plotdir {input.cov}
-        """
-
-
-rule checkm_bin_qa_plot:
-    input:
-        binf=rules.checkm_lineage_wf.output.cin,
-        outf=rules.checkm_lineage_wf.output.lineage,
-        cov=rules.checkm_cov.output
-    output:
-        touch(join(outdir, "assembled/checkm/{sample}/output/plots/bin_qa_plot.png"))
-    conda:
-        "../envs/checkm.yaml"
-    log:
-        join(outdir, "logs/checkm/{sample}.bin_qa_plot.log")
-    shell:
-        """
-        bindir=$(dirname "{input.binf}")
-        plotdir=$(dirname "{output}")
-        outdir=$(dirname "{input.outf}")
-
-        checkm bin_qa_plot $outdir $bindir $plotdir
-        """
-
-
 rule checkm_map:
     input:
         expand(join(outdir, "assembled/checkm/{sample}/input/{sample}.bam"), sample=samples.index)
@@ -237,7 +158,4 @@ rule checkm_map:
 rule checkm_all:
     input:
         expand(join(outdir, "assembled/checkm/{sample}/output/lineage.ms"), sample=samples.index),
-        # expand(join(outdir, "assembled/checkm/{sample}/output/plots/cov_pca.done"), sample=samples.index),
         expand(join(outdir, "assembled/checkm/{sample}/output/plots/{sample}.ref_dist_plots.png"), sample=samples.index),
-        expand(join(outdir, "assembled/checkm/{sample}/output/plots/{sample}.paralel_coord_plot.png"), sample=samples.index),
-        expand(join(outdir, "assembled/checkm/{sample}/output/plots/bin_qa_plot.png"), sample=samples.index)
