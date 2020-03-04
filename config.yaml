@@ -25,3 +25,4 @@ params:
   cutadapt-pe: 
     adapters: "-a CTGTCTCTTATACACATCT -A CTGTCTCTTATACACATCT "
     others: "--minimum-length 1 -q 20 "
+  gtdb: " "

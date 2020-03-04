@@ -38,6 +38,8 @@ properties:
           type: string
         others:
           type: string
+      gtdb:
+        type: string
     required:
       - spades
       - checkm
