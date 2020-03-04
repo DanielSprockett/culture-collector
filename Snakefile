@@ -14,7 +14,10 @@ validate(config, schema='schemas/config.schema.yaml')
 
 outdir = config['outdir']
 
-samples = pd.read_csv(config['samples'], sep='\t', comment='#').set_index('sample', drop=False)
+samples = pd.read_csv(config['samples'],
+                      sep='\t',
+                      comment='#',
+                      dtype={'sample': str}).set_index('sample', drop=False)
 validate(samples, schema='schemas/samples.schema.yaml')
 
 units = pd.read_csv(config['units'], sep='\t', comment='#').set_index('sample', drop=False)
