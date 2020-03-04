@@ -29,7 +29,7 @@ rule gtdb_prep:
                 fasta = join(outdir, "assembled/spades/%s/contigs.fasta" % s)
                 if fasta not in input.fastas:
                     raise ValueError("Can't find input file %s" % fasta)
-                f.write("{0}\t{1}".format(fasta, s))
+                f.write("{0}\t{1}\n".format(fasta, s))
 
 
 rule taxonomy_gtdb:
