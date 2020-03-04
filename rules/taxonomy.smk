@@ -18,7 +18,7 @@ rule gtdb_setup:
 
 rule gtdb_prep:
     input:
-        fastas=expand(rules.assemble_quast.output, sample=samples.index, unit=units.index)
+        fastas=expand(rules.assemble_spades.output, sample=samples.index, unit=units.index)
     output:
         join(outdir, "taxonomy", "gtdb", "batchfile.txt")
     log:
