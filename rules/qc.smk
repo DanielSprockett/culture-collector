@@ -23,7 +23,6 @@ rule cutadapt_pe:
         fastq2=join(outdir, "trimmed/{sample}.trim.r2.fastq.gz"),
         qc=join(outdir, "trimmed/{sample}.qc.txt")
     params:
-        config["params"]["cutadapt-pe"]
         # https://cutadapt.readthedocs.io/en/stable/guide.html#adapter-types
         adapters = config["params"]["cutadapt-pe"]["adapters"],
         # https://cutadapt.readthedocs.io/en/stable/guide.html#
