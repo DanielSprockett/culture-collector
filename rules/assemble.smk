@@ -41,7 +41,7 @@ rule assemble_quast:
         """
         outdir=$(dirname "{output[0]}")
 
-        quast.py -t {threads} -o $outdir/../ \
+        quast.py -t {threads} -o $outdir \
         {input} 2> {log} 1>&2
         """
 
