@@ -18,6 +18,7 @@ rule gtdb_setup:
 
 rule taxonomy_gtdb:
     input:
+        setup=rules.gtdb_setup.output,
         rules.assemble_spades.output
     output:
         join(outdir, "taxonomy/gtdb/{sample}/{sample}.bac120.summary.tsv")
