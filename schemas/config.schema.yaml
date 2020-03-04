@@ -25,7 +25,7 @@ properties:
     properties:
       spades: 
         type: string
-      metaquast:
+      quast:
         type: string
       checkm:
         type: string
