@@ -27,7 +27,7 @@ rule gtdb_prep:
         with open(output[0], 'w') as f:
             for s in samples.index:
                 fasta = join(outdir, "assembled/spades/%s/contigs.fasta" % s)
-                if fasta not in fastas:
+                if fasta not in input.fastas:
                     raise ValueError("Can't find input file %s" % fasta)
                 f.write("{0}\t{1}".format(fasta, s))
 
