@@ -43,12 +43,16 @@ rule taxonomy_gtdb:
         "../envs/gtdb.yaml"
     params:
         config["params"]["gtdb"]
+    resources:
+        mem_mb=200000
+    threads:
+        32
     shell:
         """
         export GTDBTK_DATA_PATH={gtdb_data}
 
         outdir=$(dirname "{output[0]}")
 
-        gtdbtk classify_wf --batchfile $outdir/file.txt --out_dir $outdir 2> {log} 1>&2
+        gtdbtk classify_wf --cpus {threads} {params} --batchfile $outdir/file.txt --out_dir $outdir 2> {log} 1>&2
         """
 
