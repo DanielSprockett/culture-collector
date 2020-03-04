@@ -17,7 +17,7 @@ outdir: outdir
 checkm_data: checkm_data
 
 # path to gtdb data directory
-gtdb_data: "/local/workdir/jgs/data/isolate_genomes/culture-collector/gtdb_data"
+gtdb_data: "/local/workdir/jgs/data/isolate_genomes/culture-collector/gtdb_data/release89"
 
 params:
   spades: " "
